@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefa 04 - Algoritmos Avançados para Engenharia</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            padding: 30px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #00e676;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            color: #4fc3f7;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .badge {
+            background-color: #00b0ff;
+            color: #fff;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+        .enunciado {
+            background-color: #252525;
+            padding: 15px;
+            border-left: 4px solid #00e676;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .secao-codigo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        @media (max-width: 768px) {
+            .secao-codigo { grid-template-columns: 1fr; }
+        }
+        .bloco {
+            background-color: #2d2d2d;
+            padding: 15px;
+            border-radius: 6px;
+        }
+        .bloco h3 {
+            margin-top: 0;
+            color: #ffb74d;
+            font-size: 14px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 5px;
+        }
+        pre {
+            margin: 0;
+            color: #a5d6a7;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Desafios de Algoritmos – Engenharia Elétrica</h1>
+        
+        <h2>
+            <span>1. Cálculo de Queda de Tensão em Linha CC</span>
+            <span class="badge">Elétrica</span>
+        </h2>
+        <div class="enunciado">
+            <strong>Enunciado:</strong> Um engenheiro precisa calcular a queda de tensão em um cabo de cobre que alimenta uma carga industrial. O algoritmo deve receber a corrente (I), a resistência por metro do cabo (p) e a distância (L), retornando se a queda de tensão está dentro do limite de 5% para uma rede de 220V.
+        </div>
+        
+        <div class="secao-codigo">
+            <div class="bloco">
+                <h3>Pseudocódigo</h3>
+                <pre>
+Algoritmo QuedaTensao
+Início
+  Ler corrente, resistencia_metro, comprimento, tensao_nominal
+  queda_tensao <- corrente * resistencia_metro * comprimento
+  percentual <- (queda_tensao / tensao_nominal) * 100
+  Se percentual <= 5 então
+    Exibir "Queda Aceitável:", queda_tensao, "V"
+  Senão
+    Exibir "Queda Crítica! Redimensione o cabo."
+  FimSe
+Fim
+                </pre>
+            </div>
+            <div class="bloco">
+                <h3>Código Python</h3>
+                <pre>
+def calcular_queda_tensao(I, r_m, L, V_nom=220):
+    queda = I * r_m * L
+    perc = (queda / V_nom) * 100
+    status = "Aceitável" if perc <= 5 else "Crítica"
+    return queda, perc, status
+
+# Teste com Exemplo
+v, p, s = calcular_queda_tensao(15, 0.005, 50)
+print(f"Queda: {v}V ({p:.2f}%) Status: {s}")
+                </pre>
+            </div>
+        </div>
+
+        <h2>
+            <span>2. Dimensionamento de Banco de Capacitores</span>
+            <span class="badge">Elétrica</span>
+        </h2>
+        <div class="enunciado">
+            <strong>Enunciado:</strong> Calcule a potência reativa necessária (Qc) para corrigir o fator de potência (FP) de uma planta industrial de um valor inicial para um valor desejado.
+        </div>
+        
+        <div class="secao-codigo">
+            <div class="bloco">
+                <h3>Pseudocódigo</h3>
+                <pre>
+Algoritmo CorrecaoFP
+Início
+  Ler potencia_ativa (P), fp_atual, fp_desejado
+  angulo_atual <- arc_cosseno(fp_atual)
+  angulo_novo <- arc_cosseno(fp_desejado)
+  qc <- P * (tangente(angulo_atual) - tangente(angulo_novo))
+  Exibir "Potência do Banco (kVAr):", qc
+Fim
+                </pre>
+            </div>
+            <div class="bloco">
+                <h3>Código Python</h3>
+                <pre>
+import math
+
+def dimensionar_capacitor(P_kw, fp_in, fp_fim):
+    phi1 = math.acos(fp_in)
+    phi2 = math.acos(fp_fim)
+    Qc = P_kw * (math.tan(phi1) - math.tan(phi2))
+    return Qc
+
+# Teste com Exemplo
+val = dimensionar_capacitor(100, 0.8, 0.95)
+print(f"Capacitor: {val:.2f} kVAr")
+                </pre>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

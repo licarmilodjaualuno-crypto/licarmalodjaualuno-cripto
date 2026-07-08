@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefa 11 - Análise de Circuito em Série e Simulação de Falhas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b0f19;
+            color: #e2e8f0;
+            padding: 30px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #111827;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid #1f2937;
+        }
+        h1 {
+            color: #3b82f6;
+            border-bottom: 2px solid #1f2937;
+            padding-bottom: 12px;
+            text-align: center;
+            font-size: 2rem;
+        }
+        h2 {
+            color: #60a5fa;
+            margin-top: 30px;
+            border-left: 4px solid #3b82f6;
+            padding-left: 12px;
+            font-size: 1.4rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        .card {
+            background-color: #1f2937;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #374151;
+        }
+        .badge {
+            background-color: #2563eb;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        .badge-alert {
+            background-color: #dc2626;
+        }
+        pre {
+            background-color: #030712;
+            padding: 14px;
+            border-radius: 6px;
+            color: #34d399;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            border: 1px solid #1f2937;
+        }
+        .result-box {
+            background-color: #030712;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #f3f4f6;
+            margin-top: 15px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simulação e Diagnóstico de Circuitos – Tarefa 11</h1>
+        <p style="text-align: center; color: #9ca3af; font-size: 1.1rem;">Análise comparativa de resistências equivalentes em série com injeção de falha pontual.</p>
+        
+        <div class="grid">
+            <div class="card">
+                <h2>Cenário 1: Analise Nominal <span class="badge">Ideal</span></h2>
+                <p>Circuito projetado contendo cinco resistores em série com os seguintes valores ôhmicos:</p>
+                <ul>
+                    <li><strong>R1:</strong> 47.0 Ω</li>
+                    <li><strong>R2:</strong> 100.0 Ω</li>
+                    <li><strong>R3:</strong> 220.0 Ω</li>
+                    <li><strong>R4:</strong> 33.0 Ω</li>
+                    <li><strong>R5:</strong> 68.0 Ω</li>
+                </ul>
+                <p>A resistência equivalente teórica é a soma direta de todos os componentes: <strong>468.0 Ω</strong>.</p>
+            </div>
+
+            <div class="card">
+                <h2>Cenário 2: Injeção de Falha <span class="badge badge-alert">Curto-Circuito</span></h2>
+                <p>Simulação de uma falha crítica no componente <strong>R2</strong>, reduzindo sua resistência efetiva para <strong>0.0 Ω</strong> (comportamento de curto-circuito).</p>
+                <ul>
+                    <li>O circuito permanece fechado, mas a oposição total à corrente diminui.</li>
+                    <li>A nova resistência equivalente simulada cai para: <strong>368.0 Ω</strong>.</li>
+                    <li><strong>Diferença diagnosticada:</strong> 100.0 Ω (exatamente o valor do componente que falhou).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="grid" style="grid-template-columns: 1fr;">
+            <div class="card">
+                <h2>Implementação do Algoritmo em Python</h2>
+                <p>O script abaixo gerencia as duas listas de dados, calcula as somatórias equivalentes e expõe a discrepância gerada pela falha do componente de hardware:</p>
+                
+                <pre>
+# Definição dos vetores de componentes do circuito
+nominal = [47.0, 100.0, 220.0, 33.0, 68.0]
+simulacao = [47.0, 0.0, 220.0, 33.0, 68.0]
+
+# Calcula as resistências equivalentes em série
+equivalente_nominal = sum(nominal)
+equivalente_simulada = sum(simulacao)
+
+diferenca = equivalente_nominal - equivalente_simulada
+
+print("Lista nominal:", nominal)
+print("Lista simulada:", simulacao)
+print(f"Resistência equivalente nominal: {equivalente_nominal} Ω")
+print(f"Resistência equivalente simulada: {equivalente_simulada} Ω")
+print(f"Diferença entre os casos: {diferenca} Ω")
+                </pre>
+
+                <h2>Output do Terminal de Diagnóstico</h2>
+                <div class="result-box">
+                    Lista nominal: [47.0, 100.0, 220.0, 33.0, 68.0]<br>
+                    Lista simulada: [47.0, 0.0, 220.0, 33.0, 68.0]<br>
+                    Resistência equivalente nominal: 468.0 Ω<br>
+                    Resistência equivalente simulada: 368.0 Ω<br>
+                    Diferença entre os casos: 100.0 Ω
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

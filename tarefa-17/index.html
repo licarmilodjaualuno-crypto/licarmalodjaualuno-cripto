@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefa 17 - Portal Alegrete: Catálogo e Galeria</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b1120;
+            color: #e2e8f0;
+            padding: 30px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: #1e293b;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border: 1px solid #334155;
+        }
+        h1 {
+            color: #22d3ee;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 15px;
+            text-align: center;
+            font-size: 2.2rem;
+            margin-top: 0;
+        }
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .card {
+            background-color: #0f172a;
+            padding: 25px;
+            border-radius: 8px;
+            border-top: 4px solid #22d3ee;
+        }
+        .card h2 {
+            color: #67e8f9;
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+        pre {
+            background-color: #030712;
+            padding: 15px;
+            border-radius: 6px;
+            color: #34d399;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 12px;
+            overflow-x: auto;
+            border: 1px solid #1f2937;
+        }
+        .report-box {
+            background-color: rgba(34, 211, 238, 0.05);
+            border-left: 4px solid #22d3ee;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+        .sport-item {
+            background-color: #1e293b;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border-left: 3px solid #f59e0b;
+        }
+        .sport-title {
+            color: #fcd34d;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Desenvolvimento do Portal Alegrete-RS</h1>
+        <div class="subtitle">Catálogo de Eventos Desportivos e Automação de Galeria de Imagens em Python</div>
+        
+        <div class="report-box">
+            <h3 style="margin-top: 0; color: #22d3ee;">Relatório Executivo</h3>
+            <p><strong>Objetivo:</strong> Reunir informações sobre eventos desportivos de Alegrete-RS (nome, modalidade, data, local) e estruturar metadados de imagens da região.</p>
+            <p><strong>Desafios & Soluções:</strong> A principal dificuldade foi recolher informações atualizadas dispersas nas redes sociais. Para solucionar, foi utilizada uma IA para auxiliar na estruturação dos dados (JSON) e desenvolvido um script Python para gerar componentes HTML automaticamente.</p>
+        </div>
+
+        <div class="grid">
+            <div class="card" style="border-top-color: #f59e0b;">
+                <h2 style="color: #fbbf24;">Eventos Desportivos Locais</h2>
+                
+                <div class="sport-item">
+                    <div class="sport-title">EFIPAN (Futebol Masculino Sub-14)</div>
+                    <div><strong>Data:</strong> Janeiro (Anual) | <strong>Local:</strong> Estádio Municipal Farroupilha</div>
+                    <div style="font-size: 0.9em; color: #94a3b8; margin-top: 5px;">Criado em 1980, um dos torneios infantis mais tradicionais do mundo (revelou Ronaldinho Gaúcho, Neymar).</div>
+                </div>
+
+                <div class="sport-item">
+                    <div class="sport-title">Rústica do Bem da Ju (Corrida de Rua)</div>
+                    <div><strong>Data:</strong> Junho (Anual) | <strong>Local:</strong> Praça dos Patinhos</div>
+                    <div style="font-size: 0.9em; color: #94a3b8; margin-top: 5px;">Evento beneficente focado na saúde e em causas sociais.</div>
+                </div>
+
+                <div class="sport-item">
+                    <div class="sport-title">Campeonato Alegretense de Futebol Amador</div>
+                    <div><strong>Data:</strong> Anual | <strong>Local:</strong> Complexo Esportivo Sindicato Rural</div>
+                </div>
+
+                <div class="sport-item">
+                    <div class="sport-title">Ciclotur MTB Alegrete (Mountain Bike)</div>
+                    <div><strong>Data:</strong> Abril/Maio | <strong>Local:</strong> Zonas Rurais de Alegrete</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Gerador Dinâmico de Galeria (Python)</h2>
+                <p style="font-size: 0.9rem;">Script criado para processar os metadados JSON e gerar o HTML estruturado da Galeria.</p>
+                <pre>
+import json
+
+CATEGORIES = ["Cards da página inicial", "Páginas temáticas", 
+              "Notícias", "Eventos", "Turismo", "Cultura", 
+              "Esporte", "Educação"]
+
+def organize_gallery(data):
+    organized = {cat: [] for cat in CATEGORIES}
+    for item in data:
+        cat = item["category"]
+        if cat in organized:
+            organized[cat].append(item)
+    return organized
+
+def generate_html(organized_data):
+    html = "&lt;h1&gt;Galeria de Imagens: Alegrete-RS&lt;/h1&gt;\n"
+    for cat, items in organized_data.items():
+        if items:
+            html += f"&lt;h2&gt;{cat}&lt;/h2&gt;\n"
+            for item in items:
+                html += f"&lt;p&gt;Fonte: {item['source']}&lt;/p&gt;\n"
+    return html
+                </pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

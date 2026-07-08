@@ -3,52 +3,412 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarefas de Algoritmos e Programação</title>
+    <title>Portfólio Avançado de Algoritmos - Licarmilo</title>
     <style>
+        /* VARIÁVEIS DE CORES CONFIGURÁVEIS */
+        :root {
+            --primary-color: #ff9800; 
+            --background-color: #1a1a1a;
+            --card-background: #242424;
+            --text-color: #ffffff;
+            --text-secondary: #aaaaaa;
+            --base-font-size: 16px;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px auto;
-            max-width: 800px;
-            background-color: #f0f2f5;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-size: var(--base-font-size);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            height: 100vh;
         }
-        h1 {
-            color: #0366d6;
+
+        /* 🎬 1. TELA DE ANIMAÇÃO DE ENTRADA */
+        #intro-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #000;
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        #intro-video { width: 100%; height: 100%; object-fit: cover; }
+
+        /* 🔒 2. TELA DE BLOQUEIO */
+        #lock-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(13,13,13,0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=1200&auto=format&fit=crop');
+            background-size: cover; background-position: center;
+            z-index: 9000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        .lock-time { font-size: 5rem; font-weight: 300; margin-bottom: 2rem; }
+        .btn-unlock {
+            background-color: var(--primary-color); color: #000; border: none;
+            padding: 1rem 3rem; font-size: 1.2rem; font-weight: bold;
+            border-radius: 30px; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
+        }
+
+        /* 🏠 3. TELA INICIAL (NOME, DISCIPLINA E FUNDO NARUTO) */
+        #home-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(26,26,26,0.95) 100%), 
+                        url('https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=1200&auto=format&fit=crop');
+            background-size: cover; background-position: center;
+            z-index: 8000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
         }
-        .tarefa {
-            background-color: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        #home-screen h1 { font-size: 3.5rem; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
+        #home-screen p { font-size: 1.8rem; color: var(--primary-color); margin: 1rem 0 2rem 0; font-weight: bold; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
+        
+        .btn-navigation {
+            background-color: var(--primary-color); color: #000; border: none;
+            padding: 1rem 2.5rem; font-size: 1.1rem; font-weight: bold;
+            border-radius: 8px; cursor: pointer; transition: transform 0.2s;
         }
-        a {
-            color: #0366d6;
-            text-decoration: none;
-            font-weight: bold;
+        .btn-navigation:hover { transform: scale(1.05); }
+
+        /* 📋 4. TELA DE TAREFAS */
+        #tasks-screen {
+            display: none;
+            padding: 4rem 2rem;
+            box-sizing: border-box;
+            min-height: 100vh;
         }
-        a:hover {
-            text-decoration: underline;
+        .top-bar {
+            position: absolute;
+            top: 20px; right: 20px;
+            display: flex; gap: 10px;
+            z-index: 5000;
         }
+        .btn-top {
+            background-color: var(--card-background); color: var(--text-color);
+            border: 1px solid var(--primary-color); padding: 10px 15px;
+            border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 0.9rem;
+        }
+        .btn-top:hover { background-color: var(--primary-color); color: #000; }
+
+        /* GRID CONFIGURADO EM 4 COLUNAS FIXAS */
+        .grid-tarefas {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 4rem auto 0 auto;
+        }
+
+        /* CARTÕES TOTALMENTE QUADRADOS */
+        .card-tarefa {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            aspect-ratio: 1 / 1;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+            border-top: 4px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            box-sizing: border-box;
+        }
+        .card-tarefa h3 { margin: 0; color: #fff; font-size: 1.4rem; }
+        .btn-acessar {
+            display: block; width: 100%; background-color: var(--primary-color);
+            color: #000; text-decoration: none; padding: 0.6rem 0;
+            border-radius: 6px; font-weight: bold; text-align: center; font-size: 1rem;
+        }
+
+        /* ⚙️ MENU DE CONFIGURAÇÕES EXTENSÍVEL */
+        .config-panel {
+            position: fixed; top: 70px; right: 20px;
+            background-color: var(--card-background);
+            border: 2px solid var(--primary-color);
+            border-radius: 10px; padding: 1.5rem; width: 280px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            display: none; z-index: 8500;
+        }
+        .config-panel h4 { margin: 0 0 1rem 0; border-bottom: 1px solid var(--primary-color); padding-bottom: 5px; }
+        .config-group { margin-bottom: 1rem; display: flex; flex-direction: column; gap: 5px; }
+        .config-group label { font-size: 0.85rem; color: var(--text-secondary); }
+        .config-group select, .config-group input {
+            background-color: #1a1a1a; color: #fff; border: 1px solid #444;
+            padding: 6px; border-radius: 4px; font-size: 0.9rem;
+        }
+        .btn-sub-menu {
+            background-color: var(--primary-color); color: #000; border: none;
+            padding: 8px; font-weight: bold; border-radius: 4px; cursor: pointer;
+        }
+        /* Submenu de Vídeos */
+        .video-submenu {
+            display: none; margin-top: 10px; background: #111; padding: 10px; border-radius: 6px;
+        }
+        .video-option {
+            background: none; border: none; color: #fff; text-align: left; width: 100%;
+            padding: 5px 0; cursor: pointer; font-size: 0.85rem;
+        }
+        .video-option:hover { color: var(--primary-color); }
+
+        /* Responsividade Básica */
+        @media (max-width: 992px) { .grid-tarefas { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .grid-tarefas { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <h1>Meus Trabalhos de Algoritmos e Programação</h1>
-    <p style="text-align: center;">Bem-vindo ao meu repositório! Aqui você encontrará todas as tarefas desenvolvidas ao longo da disciplina.</p>
-
-    <div class="tarefa">
-        <h2>Tarefa 01: Calculadora Básica</h2>
-        <p><strong>Descrição:</strong> Programa em C/Python criado para realizar operações matemáticas básicas.</p>
-        <p>🔗 <a href="#">Ver o código desta tarefa</a></p>
+    <!-- 🎬 1. TELA DE ANIMAÇÃO DE ENTRADA (5 SEGUNDOS) -->
+    <div id="intro-screen">
+        <video id="intro-video" autoplay muted playsinline>
+            <source id="video-source" src="luta.mp4" type="video/mp4">
+        </video>
     </div>
 
-    <div class="tarefa">
-        <h2>Tarefa 02: Estruturas de Repetição</h2>
-        <p><strong>Descrição:</strong> Exercícios resolvidos utilizando laços FOR e WHILE.</p>
-        <p>🔗 <a href="#">Ver o código desta tarefa</a></p>
+    <!-- 🔒 2. TELA DE BLOQUEIO -->
+    <div id="lock-screen" style="visibility: hidden; opacity: 0;">
+        <div class="lock-time" id="clock">00:00</div>
+        <button class="btn-unlock" onclick="irParaHome()" id="lbl-unlock">Ir para tela principal</button>
     </div>
 
+    <!-- 🏠 3. TELA INICIAL (BOAS-VINDAS + MENU CONFIGS) -->
+    <div id="home-screen" style="visibility: hidden; opacity: 0;">
+        <!-- Botão de Engrenagem Superior Direito -->
+        <div class="top-bar">
+            <button class="btn-top" onclick="toggleConfig()">⚙️ Configurações</button>
+        </div>
+
+        <h1 id="txt-name">Licarmilo da costa djau</h1>
+        <p id="txt-disc">Disciplina: Algoritmo e Programação</p>
+        <button class="btn-navigation" onclick="irParaTarefas()" id="lbl-see-tasks">Ver Minhas Tarefas ➔</button>
+
+        <!-- PAINEL DE CONFIGURAÇÕES -->
+        <div class="config-panel" id="configPanel">
+            <h4 id="lbl-cfg-title">Configurações</h4>
+            
+            <!-- Tamanho da Fonte -->
+            <div class="config-group">
+                <label id="lbl-font-size">Tamanho da Fonte</label>
+                <select onchange="mudarTamanhoFonte(this.value)">
+                    <option value="14px">Pequeno</option>
+                    <option value="16px" selected>Normal</option>
+                    <option value="18px">Grande</option>
+                    <option value="22px">Muito Grande</option>
+                </select>
+            </div>
+
+            <!-- Estilo da Letra (4 Fontes) -->
+            <div class="config-group">
+                <label id="lbl-font-style">Estilo da Fonte</label>
+                <select onchange="mudarEstiloFonte(this.value)">
+                    <option value="'Segoe UI', sans-serif">Padrão (Moderno)</option>
+                    <option value="'Courier New', monospace">Código (Monospace)</option>
+                    <option value="'Georgia', serif">Clássico (Serif)</option>
+                    <option value="'Comic Sans MS', cursive">Descontraído</option>
+                </select>
+            </div>
+
+            <!-- Cor das Letras -->
+            <div class="config-group">
+                <label id="lbl-text-color">Cor das Letras</label>
+                <input type="color" value="#ffffff" onchange="mudarCorLetras(this.value)">
+            </div>
+
+            <!-- Cor da Interface -->
+            <div class="config-group">
+                <label id="lbl-ui-color">Cor do Tema (Laranja/Destaques)</label>
+                <input type="color" value="#ff9800" onchange="mudarCorInterface(this.value)">
+            </div>
+
+            <!-- Idioma do Site -->
+            <div class="config-group">
+                <label>Idioma / Language</label>
+                <select onchange="mudarIdioma(this.value)">
+                    <option value="pt" selected>Português</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+
+            <!-- Mudar Vídeo de Animação -->
+            <div class="config-group">
+                <button class="btn-sub-menu" onclick="toggleVideoSubmenu()" id="lbl-btn-video">Mudar Vídeo 🎬</button>
+                <div class="video-submenu" id="videoSubmenu">
+                    <button class="video-option" onclick="trocarVideo('luta.mp4')">Animação 1 (Padrão)</button>
+                    <button class="video-option" onclick="trocarVideo('naruto2.mp4')">Animação 2 (Modo Kurama)</button>
+                    <button class="video-option" onclick="trocarVideo('naruto3.mp4')">Animação 3 (Sassuke)</button>
+                    <button class="video-option" onclick="trocarVideo('naruto4.mp4')">Animação 4 (Rasengan)</button>
+                    <button class="video-option" onclick="trocarVideo('naruto5.mp4')">Animação 5 (Abertura)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 📋 4. TELA DE TAREFAS -->
+    <div id="tasks-screen">
+        <div class="top-bar">
+            <button class="btn-top" onclick="voltarParaBloqueio()" id="lbl-btn-lock">🔒 Tela de Bloqueio</button>
+        </div>
+
+      <div class="grid-tarefas">
+            <script>
+                // Mapeamento dos PDFs das pastas que você já tem prontos
+                const arquivosReais = {
+                    "01": "E-mail de Universidade Federal do Pampa - Agradecemos o preenchimento deste formulário_ Questionário Diagnóstico - Algoritmos e Programação.pdf",
+                    "04": "Documento sem título.pdf",
+                    "07": "1.pdf",
+                    "08": "Documento sem título.pdf",
+                    "11": "capturas do grafico de bloco.pdf",
+                    "13": "atualização.pdf",
+                    "15": "codigo_chatgpt.pdf"
+                };
+
+                for (let i = 1; i <= 18; i++) {
+                    const num = String(i).padStart(2, '0');
+                    
+                    // Se tiver PDF cadastrado na lista acima, abre o PDF.
+                    // Se não tiver, tenta abrir o index.html da lição.
+                    const linkDestino = arquivosReais[num] 
+                        ? `tarefa-${num}/${arquivosReais[num]}` 
+                        : `tarefa-${num}/index.html`;
+
+                    document.write(`
+                        <div class="card-tarefa">
+                            <h3 class="lbl-task-title">Tarefa ${num}</h3>
+                            <a href="${linkDestino}" target="_blank" class="btn-acessar btn-visit-text">Visitar</a>
+                        </div>
+                    `);
+                }
+            </script>
+        </div>
+                        <div class="card-tarefa">
+                            <h3 class="lbl-task-title">Tarefa ${num}</h3>
+                            <a href="tarefa-${num}/${arquivoParaAbrir}" target="_blank" class="btn-acessar btn-visit-text">Visitar</a>
+                        </div>
+                    `);
+                }
+            </script>
+        </div>
+                        <div class="card-tarefa">
+                            <h3 class="lbl-task-title">Tarefa ${num}</h3>
+                            <a href="tarefa-${num}/${arquivoParaAbrir}" target="_blank" class="btn-acessar btn-visit-text">Visitar</a>
+                        </div>
+                    `);
+                }
+            </script>
+        </div>
+    </div>
+
+    <!-- LOGICAS DE TRANSIÇÕES, RELÓGIO E CUSTOMIZAÇÃO -->
+    <script>
+        // Transição automática da Intro de 5s para o Bloqueio
+        setTimeout(function() {
+            document.getElementById('intro-screen').style.opacity = '0';
+            document.getElementById('intro-screen').style.visibility = 'hidden';
+            
+            const lock = document.getElementById('lock-screen');
+            lock.style.visibility = 'visible';
+            lock.style.opacity = '1';
+        }, 5000);
+
+        function irParaHome() {
+            document.getElementById('lock-screen').style.opacity = '0';
+            document.getElementById('lock-screen').style.visibility = 'hidden';
+            
+            const home = document.getElementById('home-screen');
+            home.style.visibility = 'visible';
+            home.style.opacity = '1';
+        }
+
+        function irParaTarefas() {
+            document.getElementById('home-screen').style.opacity = '0';
+            document.getElementById('home-screen').style.visibility = 'hidden';
+            document.getElementById('tasks-screen').style.display = 'block';
+        }
+
+        function voltarParaBloqueio() {
+            document.getElementById('tasks-screen').style.display = 'none';
+            const lock = document.getElementById('lock-screen');
+            lock.style.visibility = 'visible';
+            lock.style.opacity = '1';
+        }
+
+        // Relógio Real
+        function atualizarRelogio() {
+            const agora = new Date();
+            document.getElementById('clock').textContent = 
+                `${String(agora.getHours()).padStart(2, '0')}:${String(agora.getMinutes()).padStart(2, '0')}`;
+        }
+        setInterval(atualizarRelogio, 1000); atualizarRelogio();
+
+        // Controladores do Menu de Configuração
+        function toggleConfig() {
+            const panel = document.getElementById('configPanel');
+            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+        }
+        function toggleVideoSubmenu() {
+            const submenu = document.getElementById('videoSubmenu');
+            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Funções de Customização em Tempo Real
+        function mudarTamanhoFonte(val) { document.documentElement.style.setProperty('--base-font-size', val); }
+         Isabella
+        function mudarEstiloFonte(val) { document.body.style.fontFamily = val; }
+        function mudarCorLetras(val) { document.documentElement.style.setProperty('--text-color', val); }
+        function mudarCorInterface(val) { document.documentElement.style.setProperty('--primary-color', val); }
+        
+        function trocarVideo(fileSrc) {
+            const video = document.getElementById('intro-video');
+            const source = document.getElementById('video-source');
+            source.src = fileSrc;
+            video.load();
+            alert("Vídeo de animação atualizado para: " + fileSrc + "! Ele rodará na próxima inicialização.");
+        }
+
+        // Sistema Simples de Dicionário de Idiomas
+        function mudarIdioma(lang) {
+            if(lang === 'en') {
+                document.getElementById('lbl-unlock').textContent = "Go to Main Screen";
+                document.getElementById('lbl-see-tasks').textContent = "View My Tasks ➔";
+                document.getElementById('lbl-btn-lock').textContent = "🔒 Lock Screen";
+                document.getElementById('lbl-cfg-title').textContent = "Settings";
+                document.getElementById('lbl-font-size').textContent = "Font Size";
+                document.getElementById('lbl-font-style').textContent = "Font Style";
+                document.getElementById('lbl-text-color').textContent = "Text Color";
+                document.getElementById('lbl-ui-color').textContent = "Theme Color";
+                document.getElementById('lbl-btn-video').textContent = "Change Video 🎬";
+                document.getElementById('txt-disc').textContent = "Subject: Algorithm and Programming";
+                document.querySelectorAll('.btn-visit-text').forEach(el => el.textContent = "Visit");
+                document.querySelectorAll('.lbl-task-title').forEach((el, i) => el.textContent = `Task ${String(i+1).padStart(2, '0')}`);
+            } else {
+                document.getElementById('lbl-unlock').textContent = "Ir para tela principal";
+                document.getElementById('lbl-see-tasks').textContent = "Ver Minhas Tarefas ➔";
+                document.getElementById('lbl-btn-lock').textContent = "🔒 Tela de Bloqueio";
+                document.getElementById('lbl-cfg-title').textContent = "Configurações";
+                document.getElementById('lbl-font-size').textContent = "Tamanho da Fonte";
+                document.getElementById('lbl-font-style').textContent = "Estilo da Fonte";
+                document.getElementById('lbl-text-color').textContent = "Cor das Letras";
+                document.getElementById('lbl-ui-color').textContent = "Cor do Tema (Laranja/Destaques)";
+                document.getElementById('lbl-btn-video').textContent = "Mudar Vídeo 🎬";
+                document.getElementById('txt-disc').textContent = "Disciplina: Algoritmo e Programação";
+                document.querySelectorAll('.btn-visit-text').forEach(el => el.textContent = "Visitar");
+                document.querySelectorAll('.lbl-task-title').forEach((el, i) => el.textContent = `Tarefa ${String(i+1).padStart(2, '0')}`);
+            }
+        }
+    </script>
 </body>
 </html>

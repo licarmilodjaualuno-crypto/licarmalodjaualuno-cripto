@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefa 14 - Tratamento de Dados de Sensores</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b1120;
+            color: #e2e8f0;
+            padding: 30px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #1e293b;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid #334155;
+        }
+        h1 {
+            color: #f59e0b;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 12px;
+            text-align: center;
+            font-size: 2.2rem;
+        }
+        h2 {
+            color: #fbbf24;
+            margin-top: 30px;
+            border-left: 4px solid #f59e0b;
+            padding-left: 12px;
+            font-size: 1.4rem;
+        }
+        .card {
+            background-color: #0f172a;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #1e293b;
+            margin-top: 20px;
+        }
+        pre {
+            background-color: #030712;
+            padding: 15px;
+            border-radius: 6px;
+            color: #34d399;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            border: 1px solid #1f2937;
+        }
+        .output {
+            background-color: #030712;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: monospace;
+            color: #e2e8f0;
+            border-radius: 4px;
+        }
+        .highlight {
+            color: #ef4444;
+            font-weight: bold;
+            background-color: rgba(239, 68, 68, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        .badge {
+            background-color: #3b82f6;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tratamento de Anomalias em Sensores – Tarefa 14</h1>
+        <p style="text-align: center; color: #94a3b8; font-size: 1.1rem;">
+            Filtragem de dados corrompidos em tempo real de leituras de vibração mecânica.
+        </p>
+        
+        <div class="card">
+            <h2>Cenário Industrial <span class="badge">Manutenção Preditiva</span></h2>
+            <p>Sensores de vibração instalados em equipamentos rotativos frequentemente emitem códigos de erro (como <span class="highlight">-999.0</span>) devido a falhas temporárias de comunicação, reinícios ou erros de calibração.</p>
+            <p>Para evitar que a análise estatística seja gravemente distorcida por esses falsos negativos, foi desenvolvido um algoritmo para detetar e remover todas as instâncias de erro do vetor antes de efetuar o cálculo das médias operacionais.</p>
+            
+            <h2>Algoritmo em Python (Data Cleaning)</h2>
+            <pre>
+# Vetor original com ruídos/falhas de leitura
+vibracao = [0.12, 0.34, -999.0, 0.28, 0.91, -999.0, 1.42, 0.67]
+
+# Loop para remoção de todos os códigos de erro
+while -999.0 in vibracao:
+    vibracao.remove(-999.0)
+
+print("Lista limpa:", vibracao)
+print("Quantidade de leituras válidas:", len(vibracao))
+            </pre>
+            
+            <h2>Output do Terminal</h2>
+            <div class="output">
+                Lista limpa: [0.12, 0.34, 0.28, 0.91, 1.42, 0.67]<br>
+                Quantidade de leituras válidas: 6
+            </div>
+        </div>
+    </div>
+</body>
+</html>

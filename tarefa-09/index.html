@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefa 09 - Resolução Algorítmica em Cálculo I</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding: 30px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #1e293b;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            color: #38bdf8;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 12px;
+            text-align: center;
+            font-size: 2rem;
+        }
+        h2 {
+            color: #7dd3fc;
+            margin-top: 30px;
+            border-left: 4px solid #38bdf8;
+            padding-left: 12px;
+            font-size: 1.4rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        .card {
+            background-color: #0f172a;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+        }
+        .math {
+            font-family: 'Georgia', serif;
+            color: #f43f5e;
+            font-weight: bold;
+            background-color: #271b25;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #030712;
+            padding: 14px;
+            border-radius: 6px;
+            color: #34d399;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            border: 1px solid #1f2937;
+        }
+        .highlight {
+            color: #fbbf24;
+            font-weight: 600;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Análise Algorítmica de Cálculo I – Tarefa 09</h1>
+        <p style="text-align: center; color: #94a3b8; font-size: 1.1rem;">Estudo completo e modelação em Python da Função Afim: <span class="math">f(x) = 2x + 1</span></p>
+        
+        <div class="grid">
+            <div class="card">
+                <h2>1. Domínio da Função</h2>
+                <p>Por tratar-se de uma função polinomial do primeiro grau (função afim), não existem restrições como divisões por zero ou raízes quadradas de números negativos.</p>
+                <p><strong>Conclusão Matemática:</strong> O domínio é o conjunto dos números reais: <span class="math">D = ℝ</span>.</p>
+                <pre>
+# Abordagem 1: Avaliação de x
+x = float(input("Digite um valor para x: "))
+resultado = 2 * x + 1
+print(f"f({x}) = {resultado}")
+                </pre>
+            </div>
+
+            <div class="card">
+                <h2>2. Raiz da Função</h2>
+                <p>A raiz (ou zero) indica o ponto exato onde a reta interseta o eixo <span class="highlight">x</span>, ou seja, quando <span class="math">f(x) = 0</span>.</p>
+                <ul>
+                    <li><span class="math">2x + 1 = 0</span></li>
+                    <li><span class="math">2x = -1</span></li>
+                    <li><span class="math">x = -0.5</span></li>
+                </ul>
+                <p><strong>Ponto no Gráfico:</strong> <span class="highlight">(-0.5, 0)</span></p>
+            </div>
+        </div>
+
+        <div class="grid" style="grid-template-columns: 1fr;">
+            <div class="card">
+                <h2>3. Crescimento e Construção Gráfica</h2>
+                <p>O coeficiente angular é <span class="math">a = 2</span>. Como <span class="math">a > 0</span>, conclui-se matematicamente que a <strong>função é estritamente crescente</strong>.</p>
+                <p>Abaixo está o algoritmo em Python utilizado para mapear a reta num intervalo contínuo utilizando as bibliotecas <code>numpy</code> e <code>matplotlib</code>:</p>
+                
+                <pre>
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Geração de 100 pontos no intervalo de -10 a 10
+x = np.linspace(-10, 10, 100)
+y = 2 * x + 1
+
+plt.plot(x, y, label="f(x) = 2x + 1", color="red")
+plt.axhline(0, color='black', linewidth=0.8)
+plt.axvline(0, color='black', linewidth=0.8)
+
+plt.title("Gráfico da Função de 1º Grau")
+plt.xlabel("Eixo X")
+plt.ylabel("Eixo f(x)")
+plt.grid(True, linestyle="--")
+plt.legend()
+plt.show()
+                </pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

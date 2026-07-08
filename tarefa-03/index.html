@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefa 03 - Introdução a Algoritmos com Python</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            padding: 30px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #ffb74d;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            color: #4fc3f7;
+            margin-top: 25px;
+        }
+        .enunciado {
+            background-color: #252525;
+            padding: 12px;
+            border-left: 4px solid #ffb74d;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        pre {
+            background-color: #2d2d2d;
+            padding: 15px;
+            border-radius: 5px;
+            color: #a5d6a7;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Exercícios – Introdução a Algoritmos com Python</h1>
+        
+        <h2>Exercício 1 - Área de um retângulo</h2>
+        <div class="enunciado">Calcular a área de um terreno retangular.</div>
+        <pre>
+base = float(input("Digite a base: "))
+altura = float(input("Digite a altura: "))
+area = base * altura
+print("Área:", area)
+        </pre>
+
+        <h2>Exercício 2 - Média de notas</h2>
+        <div class="enunciado">Calcular a média de três notas de um aluno.</div>
+        <pre>
+n1 = float(input("Nota 1: "))
+n2 = float(input("Nota 2: "))
+n3 = float(input("Nota 3: "))
+media = (n1 + n2 + n3) / 3
+print("Média:", media)
+        </pre>
+
+        <h2>Exercício 3 - Conversão de temperatura</h2>
+        <div class="enunciado">Converter temperatura de Celsius para Fahrenheit.</div>
+        <pre>
+c = float(input("Temperatura em Celsius: "))
+f = (c * 9/5) + 32
+print("Fahrenheit:", f)
+        </pre>
+
+        <h2>Exercício 4 - Cálculo de salário com bônus</h2>
+        <div class="enunciado">Calcular salário final com bônus de 10%.</div>
+        <pre>
+salario = float(input("Salário base: "))
+bonus = salario * 0.10
+total = salario + bonus
+print("Salário final:", total)
+        </pre>
+
+        <h2>Exercício 5 - Número par ou ímpar</h2>
+        <div class="enunciado">Verificar se um número é par ou ímpar.</div>
+        <pre>
+num = int(input("Digite um número: "))
+if num % 2 == 0:
+    print("Par")
+else:
+    print("Ímpar")
+        </pre>
+    </div>
+</body>
+</html>

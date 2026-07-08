@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefa 05 - Inspeção Industrial e Controle de Processos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            padding: 30px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #ec407a;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            color: #4fc3f7;
+            margin-top: 30px;
+            border-left: 4px solid #ec407a;
+            padding-left: 10px;
+        }
+        .enunciado {
+            background-color: #252525;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #2d2d2d;
+            padding: 15px;
+            border-radius: 6px;
+            color: #a5d6a7;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            font-size: 13px;
+        }
+        .res {
+            color: #ffb74d;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Controle de Processos Industriais – Tarefa 05</h1>
+        
+        <h2>Parte A - Inspeção de Solda (Controle de Qualidade)</h2>
+        <div class="enunciado">
+            <strong>Objetivo:</strong> Avaliar se o desvio da resistência medida de uma solda em relação à resistência nominal está dentro da tolerância permitida de 8%.
+        </div>
+        
+        <h3>Pseudocódigo Original</h3>
+        <pre>
+Algoritmo "Inspeção de solda"
+Início
+  Escreva "Digite a resistência medida do solda (MPa):"
+  Leia (resistencia_medida)
+  tolerancia_pct <- 8
+  tolerancia_abs <- resistencia_nominal * 0.08
+  desvio <- resistencia_medida - resistencia_nominal
+  percentual_desvio <- (desvio / resistencia_nominal) * 100
+  
+  Se (desvio >= -tolerancia_abs) e (desvio <= tolerancia_abs) então
+    Escreva ("Solda Aprovada")
+  Senão
+    Escreva ("Solda Reprovada")
+    Escreva ("Desvio: ", desvio, " MPa")
+    Escreva ("Percentual de desvio: ", percentual_desvio, "%")
+  FimSe
+Fim
+        </pre>
+
+        <h2>Parte B - Controle de Velocidade da Esteira</h2>
+        <div class="enunciado">
+            <strong>Objetivo:</strong> Monitorar a velocidade atual de uma esteira de produção e alertar caso ela ultrapasse os limites aceitáveis de segurança (10% acima ou abaixo da velocidade-alvo).
+        </div>
+        
+        <h3>Pseudocódigo Original</h3>
+        <pre>
+Algoritmo "Controle de Velocidade da Esteira"
+Início
+  Escreva "Digite a velocidade alvo (m/min): "
+  Leia (velocidade_alvo)
+  Escreva "Digite a velocidade atual (m/min): "
+  Leia (velocidade_atual)
+  
+  limite_superior <- velocidade_alvo * 1.10
+  limite_inferior <- velocidade_alvo * 0.90
+  
+  Se (velocidade_atual > limite_superior) então
+    Escreva "Alerta: Velocidade muito ALTA! Risco de acidente."
+  Senão se (velocidade_atual < limite_inferior) então
+    Escreva "Alerta: Velocidade muito BAIXA! Gargalo na produção."
+  Senão
+    Escreva "Sistema Estável: Velocidade dentro dos padrões."
+  FimSe
+Fim
+        </pre>
+    </div>
+</body>
+</html>

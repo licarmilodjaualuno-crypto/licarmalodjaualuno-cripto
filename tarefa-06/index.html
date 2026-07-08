@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefa 06 - Análise de Dados de Sensores</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            padding: 30px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #ffca28;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            color: #4fc3f7;
+            margin-top: 30px;
+            border-left: 4px solid #ffca28;
+            padding-left: 10px;
+        }
+        .enunciado {
+            background-color: #252525;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #2d2d2d;
+            padding: 15px;
+            border-radius: 6px;
+            color: #a5d6a7;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            font-size: 13px;
+        }
+        .res {
+            color: #ff8a65;
+            font-weight: bold;
+        }
+        .lista-dados {
+            background-color: #252525;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #69f0ae;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Análise Estatística de Sensores Industriais – Tarefa 06</h1>
+        
+        <div class="enunciado">
+            <strong>Objetivo:</strong> Coletar uma lista de leituras de temperatura de múltiplos sensores em uma esteira de fundição, identificar os valores críticos (máximos e mínimos), remover ruídos na leitura e gerar um relatório automatizado do status térmico do sistema.
+        </div>
+        
+        <h2>Algoritmo em Python (Processamento de Listas)</h2>
+        <pre>
+# Inicialização da lista de controle térmico
+temperaturas = [820, 835, 848, 791, 812, 856]
+
+# Processamento estatístico dos dados das esteiras
+temp_maxima = max(temperaturas)
+temp_minima = min(temperaturas)
+media_termica = sum(temperaturas) / len(temperaturas)
+
+print("Lista de temperaturas monitoradas:", temperaturas)
+print(f"Temperatura máxima registrada: {temp_maxima} °C")
+print(f"Temperatura mínima registrada: {temp_minima} °C")
+print(f"Média operacional do sistema: {media_termica:.2f} °C")
+        </pre>
+
+        <h2>Relatório do Painel de Controle (Resultados Simulados)</h2>
+        <div class="lista-dados">
+            <ul>
+                <li><strong>Vetor de Amostragem:</strong> <span class="res">[820°C, 835°C, 848°C, 791°C, 812°C, 856°C]</span></li>
+                <li><strong>Pico Crítico (Máxima):</strong> <span class="res">856 °C</span> (Operação dentro do limite de segurança do refratário)</li>
+                <li><strong>Ponto de Arrefecimento (Mínima):</strong> <span class="res">791 °C</span></li>
+                <li><strong>Média do Barramento:</strong> <span class="res">827.00 °C</span></li>
+                <li><strong>Status de Estabilidade:</strong> <span style="color: #69f0ae; font-weight: bold;">SISTEMA ESTÁVEL</span></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
