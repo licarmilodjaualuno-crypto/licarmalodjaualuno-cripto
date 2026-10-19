@@ -1,1 +1,30 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#121820;color:#edf2f7;font:17px/1.65 system-ui,sans-serif}a{color:#ffbd69}a:hover{text-decoration:underline}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #ffbd69;outline-offset:4px}.wrap{max-width:1160px;margin:auto;padding:32px 24px}header{border-bottom:1px solid #354252}h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.15}h2{line-height:1.3}.eyebrow{color:#ffbd69;letter-spacing:.13em;text-transform:uppercase;font-size:.8rem}.muted{color:#b9c4d1}.toolbar{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin:28px 0}input{font:inherit;color:inherit;background:#1c2633;border:1px solid #65768b;padding:12px;border-radius:8px;width:min(100%,600px)}.tasks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px}.task{background:#1c2633;border:1px solid #354252;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:12px}.task h2{font-size:1.2rem;margin:0}.task p{margin:0}.task a{margin-top:auto}.task[hidden]{display:none}.task-nav{max-width:1100px;margin:24px auto;padding:18px;display:flex;flex-wrap:wrap;gap:18px;background:#172334;border:1px solid #65768b;border-radius:8px}.task-nav a{color:#ffbd69}.task-files{max-width:1100px;margin:24px auto;padding:24px;background:#172334;border:1px solid #65768b;border-radius:8px;overflow-wrap:anywhere}.task-files a{color:#ffbd69}.task-files li{margin:12px 0}.example-note{background:#172334;color:#edf2f7;border-left:4px solid #ffbd69;padding:14px}pre{max-width:100%;overflow:auto}footer{margin-top:36px;border-top:1px solid #354252}button{font:inherit;cursor:pointer} @media(max-width:600px){body{padding:0!important}.container{padding:20px!important;width:100%} .grid{grid-template-columns:1fr!important} .wrap{padding:24px 18px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* Tema futurista: ciano e violeta sobre azul profundo. */
+:root{color-scheme:dark;--neon:#67e8f9;--violet:#c4b5fd;--edge:#334667}
+body{background-color:#070b19;background-image:radial-gradient(ellipse at 8% 0%,#15374f80,transparent 48%),radial-gradient(ellipse at 95% 30%,#39215b66,transparent 48%),linear-gradient(#67e8f908 1px,transparent 1px),linear-gradient(90deg,#67e8f908 1px,transparent 1px);background-size:auto,auto,48px 48px,48px 48px;color:#edf4ff}
+header{background:linear-gradient(120deg,#0c2039d9,#181331cc);border-bottom:1px solid #67e8f950;box-shadow:0 12px 65px #071526}
+header .wrap{padding-top:64px;padding-bottom:56px}
+header h1{color:#e6fbff;text-shadow:0 0 36px #67e8f940;max-width:850px;letter-spacing:-.04em}
+header h1::after{content:"";display:block;width:110px;height:4px;margin-top:28px;background:linear-gradient(90deg,#67e8f9,#a78bfa);border-radius:4px;box-shadow:0 0 20px #67e8f966}
+a,.task-nav a,.task-files a{color:var(--neon)}
+a:hover{color:#c4b5fd}
+.eyebrow{color:var(--neon);font-weight:700;letter-spacing:.16em}
+.muted{color:#bccae0}
+header a,.task>a{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:8px;border:1px solid #67e8f970;background:linear-gradient(110deg,#123c51,#28224d);color:#e5fbff;text-decoration:none;font-weight:650}
+header a:hover,.task>a:hover{background:linear-gradient(110deg,#18556a,#43316d);box-shadow:0 0 20px #67e8f922}
+.task{background:linear-gradient(145deg,#101e34f5,#17162cf5);border:1px solid var(--edge);border-top:2px solid #67e8f9aa;box-shadow:0 8px 25px #0004;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.task:nth-child(even){border-top-color:#a78bfa}
+.task:hover{transform:translateY(-4px);border-color:#67e8f999;box-shadow:0 12px 35px #0006,0 0 24px #67e8f918}
+.task h2{color:#f0f5ff}
+input{background:#0c162a;border-color:#4f658b;box-shadow:inset 0 2px 10px #0003;color:#f0f5ff}
+input::placeholder{color:#a8b8d0}
+input:focus{border-color:var(--neon);box-shadow:0 0 20px #67e8f926}
+a:focus-visible,button:focus-visible,input:focus-visible{outline-color:var(--neon)}
+#contagem{color:#c4b5fd;font-size:.95rem}
+.task-nav,.task-files{background:linear-gradient(135deg,#101e34,#1b1932);border-color:#455779;box-shadow:0 8px 30px #0003}
+.example-note{background:#112139;border-left-color:#a78bfa}
+.container{background-color:#0e192d!important;border:1px solid #334667}
+.container h1{color:#67e8f9}.container h2{color:#c4b5fd}
+footer{border-color:#334667;background:#080f20b3}
+@media(max-width:600px){header .wrap{padding-top:40px;padding-bottom:36px}.task{padding:22px}}
+@media(prefers-reduced-motion:reduce){.task{transition:none}.task:hover{transform:none}}
