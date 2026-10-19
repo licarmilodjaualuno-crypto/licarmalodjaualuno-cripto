@@ -172,13 +172,7 @@
 </head>
 <body>
 
-    <!-- 🎬 1. TELA DE ANIMAÇÃO DE ENTRADA (5 SEGUNDOS) -->
-    <div id="intro-screen">
-        <video id="intro-video" autoplay muted playsinline>
-            <source id="video-source" src="luta.mp4" type="video/mp4">
-        </video>
-    </div>
-
+    <div id="intro-screen" style="display:none"></div>
     <!-- 🔒 2. TELA DE BLOQUEIO -->
     <div id="lock-screen" style="visibility: hidden; opacity: 0;">
         <div class="lock-time" id="clock">00:00</div>
@@ -192,7 +186,7 @@
             <button class="btn-top" onclick="toggleConfig()">⚙️ Configurações</button>
         </div>
 
-        <h1 id="txt-name">Licarmilo da costa djau</h1>
+        <h1 id="txt-name">Licarmilo da Costa Djau</h1>
         <p id="txt-disc">Disciplina: Algoritmo e Programação</p>
         <button class="btn-navigation" onclick="irParaTarefas()" id="lbl-see-tasks">Ver Minhas Tarefas ➔</button>
 
@@ -243,17 +237,6 @@
                 </select>
             </div>
 
-            <!-- Mudar Vídeo de Animação -->
-            <div class="config-group">
-                <button class="btn-sub-menu" onclick="toggleVideoSubmenu()" id="lbl-btn-video">Mudar Vídeo 🎬</button>
-                <div class="video-submenu" id="videoSubmenu">
-                    <button class="video-option" onclick="trocarVideo('luta.mp4')">Animação 1 (Padrão)</button>
-                    <button class="video-option" onclick="trocarVideo('naruto2.mp4')">Animação 2 (Modo Kurama)</button>
-                    <button class="video-option" onclick="trocarVideo('naruto3.mp4')">Animação 3 (Sassuke)</button>
-                    <button class="video-option" onclick="trocarVideo('naruto4.mp4')">Animação 4 (Rasengan)</button>
-                    <button class="video-option" onclick="trocarVideo('naruto5.mp4')">Animação 5 (Abertura)</button>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -263,54 +246,27 @@
             <button class="btn-top" onclick="voltarParaBloqueio()" id="lbl-btn-lock">🔒 Tela de Bloqueio</button>
         </div>
 
-      <div class="grid-tarefas">
-            <script>
-                // Mapeamento dos PDFs das pastas que você já tem prontos
-                const arquivosReais = {
-                    "01": "E-mail de Universidade Federal do Pampa - Agradecemos o preenchimento deste formulário_ Questionário Diagnóstico - Algoritmos e Programação.pdf",
-                    "04": "Documento sem título.pdf",
-                    "07": "1.pdf",
-                    "08": "Documento sem título.pdf",
-                    "11": "capturas do grafico de bloco.pdf",
-                    "13": "atualização.pdf",
-                    "15": "codigo_chatgpt.pdf"
-                };
-
-                for (let i = 1; i <= 18; i++) {
-                    const num = String(i).padStart(2, '0');
-                    
-                    // Se tiver PDF cadastrado na lista acima, abre o PDF.
-                    // Se não tiver, tenta abrir o index.html da lição.
-                    const linkDestino = arquivosReais[num] 
-                        ? `tarefa-${num}/${arquivosReais[num]}` 
-                        : `tarefa-${num}/index.html`;
-
-                    document.write(`
-                        <div class="card-tarefa">
-                            <h3 class="lbl-task-title">Tarefa ${num}</h3>
-                            <a href="${linkDestino}" target="_blank" class="btn-acessar btn-visit-text">Visitar</a>
-                        </div>
-                    `);
-                }
-            </script>
-        </div>
-                        <div class="card-tarefa">
-                            <h3 class="lbl-task-title">Tarefa ${num}</h3>
-                            <a href="tarefa-${num}/${arquivoParaAbrir}" target="_blank" class="btn-acessar btn-visit-text">Visitar</a>
-                        </div>
-                    `);
-                }
-            </script>
-        </div>
-                        <div class="card-tarefa">
-                            <h3 class="lbl-task-title">Tarefa ${num}</h3>
-                            <a href="tarefa-${num}/${arquivoParaAbrir}" target="_blank" class="btn-acessar btn-visit-text">Visitar</a>
-                        </div>
-                    `);
-                }
-            </script>
-        </div>
-    </div>
+<div class="grid-tarefas">
+<div class="card-tarefa"><h3 class="lbl-task-title">Tarefa 01</h3><a href="tarefa-01/index.html" class="btn-acessar btn-visit-text">Visitar</a></div>
+<div class="card-tarefa"><h3 class="lbl-task-title">Tarefa 02</h3><a href="tarefa-02/index.html" class="btn-acessar btn-visit-text">Visitar</a></div>
+<div class="card-tarefa"><h3 class="lbl-task-title">Tarefa 03</h3><a href="tarefa-03/index.html" class="btn-acessar btn-visit-text">Visitar</a></div>
+<div class="card-tarefa"><h3 class="lbl-task-title">Tarefa 04</h3><a href="tarefa-04/index.html" class="btn-acessar btn-visit-text">Visitar</a></div>
+<div class="card-tarefa"><h3 class="lbl-task-title">Tarefa 05</h3><a href="tarefa-05/index.html" class="btn-acessar btn-visit-text">Visitar</a></div>
+<div class="card-tarefa"><h3 class="lbl-task-title">Tarefa 06</h3><a href="tarefa-06/index.html" class="btn-acessar btn-visit-text">Visitar</a></div>
+<div class="card-tarefa"><h3 class="lbl-task-title">Tarefa 07</h3><a href="tarefa-07/index.html" class="btn-acessar btn-visit-text">Visitar</a></div>
+<div class="card-tarefa"><h3 class="lbl-task-title">Tarefa 08</h3><a href="tarefa-08/index.html" class="btn-acessar btn-visit-text">Visitar</a></div>
+<div class="card-tarefa"><h3 class="lbl-task-title">Tarefa 09</h3><a href="tarefa-09/index.html" class="btn-acessar btn-visit-text">Visitar</a></div>
+<div class="card-tarefa"><h3 class="lbl-task-title">Tarefa 10</h3><a href="tarefa-10/index.html" class="btn-acessar btn-visit-text">Visitar</a></div>
+<div class="card-tarefa"><h3 class="lbl-task-title">Tarefa 11</h3><a href="tarefa-11/index.html" class="btn-acessar btn-visit-text">Visitar</a></div>
+<div class="card-tarefa"><h3 class="lbl-task-title">Tarefa 12</h3><a href="tarefa-12/index.html" class="btn-acessar btn-visit-text">Visitar</a></div>
+<div class="card-tarefa"><h3 class="lbl-task-title">Tarefa 13</h3><a href="tarefa-13/index.html" class="btn-acessar btn-visit-text">Visitar</a></div>
+<div class="card-tarefa"><h3 class="lbl-task-title">Tarefa 14</h3><a href="tarefa-14/index.html" class="btn-acessar btn-visit-text">Visitar</a></div>
+<div class="card-tarefa"><h3 class="lbl-task-title">Tarefa 15</h3><a href="tarefa-15/index.html" class="btn-acessar btn-visit-text">Visitar</a></div>
+<div class="card-tarefa"><h3 class="lbl-task-title">Tarefa 16</h3><a href="tarefa-16/index.html" class="btn-acessar btn-visit-text">Visitar</a></div>
+<div class="card-tarefa"><h3 class="lbl-task-title">Tarefa 17</h3><a href="tarefa-17/index.html" class="btn-acessar btn-visit-text">Visitar</a></div>
+<div class="card-tarefa"><h3 class="lbl-task-title">Tarefa 18</h3><a href="tarefa-18/index.html" class="btn-acessar btn-visit-text">Visitar</a></div>
+</div>
+</div>
 
     <!-- LOGICAS DE TRANSIÇÕES, RELÓGIO E CUSTOMIZAÇÃO -->
     <script>
@@ -322,7 +278,7 @@
             const lock = document.getElementById('lock-screen');
             lock.style.visibility = 'visible';
             lock.style.opacity = '1';
-        }, 5000);
+        }, 0);
 
         function irParaHome() {
             document.getElementById('lock-screen').style.opacity = '0';
@@ -359,25 +315,16 @@
             const panel = document.getElementById('configPanel');
             panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
         }
-        function toggleVideoSubmenu() {
-            const submenu = document.getElementById('videoSubmenu');
-            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-        }
+
 
         // Funções de Customização em Tempo Real
         function mudarTamanhoFonte(val) { document.documentElement.style.setProperty('--base-font-size', val); }
-         Isabella
+
         function mudarEstiloFonte(val) { document.body.style.fontFamily = val; }
         function mudarCorLetras(val) { document.documentElement.style.setProperty('--text-color', val); }
         function mudarCorInterface(val) { document.documentElement.style.setProperty('--primary-color', val); }
         
-        function trocarVideo(fileSrc) {
-            const video = document.getElementById('intro-video');
-            const source = document.getElementById('video-source');
-            source.src = fileSrc;
-            video.load();
-            alert("Vídeo de animação atualizado para: " + fileSrc + "! Ele rodará na próxima inicialização.");
-        }
+
 
         // Sistema Simples de Dicionário de Idiomas
         function mudarIdioma(lang) {
@@ -390,7 +337,7 @@
                 document.getElementById('lbl-font-style').textContent = "Font Style";
                 document.getElementById('lbl-text-color').textContent = "Text Color";
                 document.getElementById('lbl-ui-color').textContent = "Theme Color";
-                document.getElementById('lbl-btn-video').textContent = "Change Video 🎬";
+
                 document.getElementById('txt-disc').textContent = "Subject: Algorithm and Programming";
                 document.querySelectorAll('.btn-visit-text').forEach(el => el.textContent = "Visit");
                 document.querySelectorAll('.lbl-task-title').forEach((el, i) => el.textContent = `Task ${String(i+1).padStart(2, '0')}`);
@@ -403,7 +350,7 @@
                 document.getElementById('lbl-font-style').textContent = "Estilo da Fonte";
                 document.getElementById('lbl-text-color').textContent = "Cor das Letras";
                 document.getElementById('lbl-ui-color').textContent = "Cor do Tema (Laranja/Destaques)";
-                document.getElementById('lbl-btn-video').textContent = "Mudar Vídeo 🎬";
+
                 document.getElementById('txt-disc').textContent = "Disciplina: Algoritmo e Programação";
                 document.querySelectorAll('.btn-visit-text').forEach(el => el.textContent = "Visitar");
                 document.querySelectorAll('.lbl-task-title').forEach((el, i) => el.textContent = `Tarefa ${String(i+1).padStart(2, '0')}`);

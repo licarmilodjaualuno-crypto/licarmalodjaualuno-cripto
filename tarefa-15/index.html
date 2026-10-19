@@ -99,21 +99,21 @@
 
         <div class="card" style="margin-top: 20px;">
             <h2>Regras de Negócio e Engenharia</h2>
-            <p>O sistema processa uma lista de medições de potência de sinal (em dBm) aplicando os seguintes critérios de validação e classificação[cite: 36]:</p>
+            <p>O sistema processa uma lista de medições de potência de sinal (em dBm) aplicando os seguintes critérios de validação e classificação:</p>
             <ul>
-                <li><strong>Validação:</strong> Apenas valores entre -120 dBm e 0 dBm são aceites[cite: 36].</li>
-                <li><strong><span class="highlight-normal">Normal:</span></strong> Sinal >= -85 dBm[cite: 36].</li>
-                <li><strong><span class="highlight-alert">Alerta:</span></strong> Sinal entre -100 e -85 dBm[cite: 36].</li>
-                <li><strong><span class="highlight-critical">Crítico:</span></strong> Sinal < -100 dBm[cite: 36].</li>
+                <li><strong>Validação:</strong> Apenas valores entre -120 dBm e 0 dBm são aceites.</li>
+                <li><strong><span class="highlight-normal">Normal:</span></strong> Sinal >= -85 dBm.</li>
+                <li><strong><span class="highlight-alert">Alerta:</span></strong> Sinal &ge; -100 dBm e &lt; -85 dBm.</li>
+                <li><strong><span class="highlight-critical">Crítico:</span></strong> Sinal < -100 dBm.</li>
             </ul>
-            <p>O foco arquitetónico do sistema é a aplicação do <strong>Princípio de Responsabilidade Única (SRP)</strong>, dividindo as tarefas em módulos independentes: validação, cálculos estatísticos, classificação e geração de relatório[cite: 39, 40].</p>
+            <p>O foco arquitetónico do sistema é a aplicação do <strong>Princípio de Responsabilidade Única (SRP)</strong>, dividindo as tarefas em módulos independentes: validação, cálculos estatísticos, classificação e geração de relatório.</p>
         </div>
 
         <div class="grid">
             <!-- Estrutura Modular -->
             <div class="card">
                 <h2>Modularização (Python)</h2>
-                <p>Exemplo de separação de responsabilidades no código de monitorização[cite: 40].</p>
+                <p>Exemplo de separação de responsabilidades no código de monitorização.</p>
                 <pre>
 def is_valid_measurement(value: float, min_dbm=-120.0, max_dbm=0.0):
     return min_dbm <= value <= max_dbm
@@ -134,7 +134,7 @@ def compute_stats(values: list):
             <!-- Relatório Gerado -->
             <div class="card">
                 <h2>Output do Relatório</h2>
-                <p>Saída formatada após o processamento e deteção de sequências críticas[cite: 40].</p>
+                <p>Saída formatada após o processamento e deteção de sequências críticas.</p>
                 <pre>
 Relatório da Estação de Monitoramento de Potência (dBm)
 -------------------------------------------------------
@@ -157,5 +157,13 @@ Eventos críticos consecutivos:
             </div>
         </div>
     </div>
+<nav aria-label="Navegação da tarefa"><a href="../index.html">← Voltar às tarefas</a></nav><section aria-labelledby="arquivos-tarefa"><h2 id="arquivos-tarefa">Arquivos da tarefa 15</h2><ul><li><a href="codigo_chatgpt.pdf">codigo_chatgpt.pdf</a></li>
+<li><a href="codigo_gemini.pdf">codigo_gemini.pdf</a></li>
+<li><a href="gerar_codigos_v2%20(1).pdf">gerar_codigos_v2 (1).pdf</a></li>
+<li><a href="gerar_codigos_v2.pdf">gerar_codigos_v2.pdf</a></li>
+<li><a href="prompt_ia.pdf">prompt_ia.pdf</a></li>
+<li><a href="relatorio_modularizacao.md.pdf">relatorio_modularizacao.md.pdf</a></li>
+<li><a href="relatorio_modularizacao_final.pdf">relatorio_modularizacao_final.pdf</a></li>
+<li><a href="testar_codigos.pdf">testar_codigos.pdf</a></li></ul></section>
 </body>
 </html>
