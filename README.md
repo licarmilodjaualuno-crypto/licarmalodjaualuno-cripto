@@ -30,3 +30,9 @@ python tarefa-15/monitoramento.py
 Os PDFs preservam as entregas originais. Os resumos HTML ajudam a navegar e não substituem os enunciados ou a revisão do professor. Trechos incompletos são identificados como exemplos. Documentos digitalizados podem exigir leitura visual. A revisão de navegação não representa validação integral de todos os cálculos e programas nos PDFs.
 
 O catálogo de eventos da tarefa 17 é material acadêmico e não deve ser usado como agenda atual sem confirmar datas nas fontes oficiais.
+
+## Navegação e acessibilidade
+
+A página inicial apresenta trabalhos em destaque, busca por palavras ou número exato e filtros por área. O botão Limpar filtros restaura a lista. A navegação funciona por teclado, os filtros informam sua seleção e a contagem de resultados é anunciada por leitores de tela. A interface se adapta a telas pequenas e respeita a preferência por movimento reduzido.
+
+A seção Sobre informa a formação acadêmica. O contato aponta para o perfil público do GitHub; nenhum formulário envia mensagens ou coleta dados.
