@@ -84,10 +84,12 @@
         .highlight-alert { color: #f59e0b; font-weight: bold; }
         .highlight-normal { color: #10b981; font-weight: bold; }
     </style>
+<link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
+<nav class="task-nav" aria-label="Navegação da tarefa"><a href="../index.html#tarefas">← Todas as tarefas</a><a href="../tarefa-14/index.html">← Tarefa 14</a><a href="../tarefa-16/index.html">Tarefa 16 →</a></nav>
     <div class="container">
-        <h1>Análise de Potência de Sinal Recebido – Tarefa 15</h1>
+        <h1>Análise de Potência de Sinal Recebido – Tarefa 15</h1><p class="example-note">Os trechos de código nesta página são ilustrativos e podem estar incompletos. Consulte os documentos da tarefa para a versão entregue.</p>
         <div class="subtitle">Monitorização em dBm com Modularização de Código</div>
         
         <div class="tags">
@@ -134,36 +136,24 @@ def compute_stats(values: list):
             <!-- Relatório Gerado -->
             <div class="card">
                 <h2>Output do Relatório</h2>
-                <p>Saída formatada após o processamento e deteção de sequências críticas.</p>
+                <p>Resultado do programa complementar para os dados [-90, -87, -95, -101, -103, -110, -75, -80, -130, "abc", -98]. Leituras inválidas interrompem sequências críticas.</p>
                 <pre>
-Relatório da Estação de Monitoramento de Potência (dBm)
--------------------------------------------------------
-Medições totais (originais): 10
+Medições totais: 11
 Medições válidas: 9
-Medições inválidas: 1
-
-Estatísticas:
-  Mínimo: -110.00 dBm
-  Máximo: -75.00 dBm
-  Média: -93.22 dBm
-  Desvio padrão: 10.64
-
-Classificação:
-  Normal: 2 | Alerta: 4 | Critico: 3
-
-Eventos críticos consecutivos:
-  1. Índices: 3..5 => [-101.00, -103.00, -110.00] dBm
+Medições descartadas: 2
+Média: -93.22 dBm
+Mínimo: -110.00 dBm
+Máximo: -75.00 dBm
+Desvio padrão populacional: 10.64 dBm
+Normal: 2
+Alerta: 4
+Crítico: 3
+Maior sequência crítica: 3
                 </pre>
             </div>
         </div>
     </div>
-<nav aria-label="Navegação da tarefa"><a href="../index.html">← Voltar às tarefas</a></nav><section aria-labelledby="arquivos-tarefa"><h2 id="arquivos-tarefa">Arquivos da tarefa 15</h2><ul><li><a href="codigo_chatgpt.pdf">codigo_chatgpt.pdf</a></li>
-<li><a href="codigo_gemini.pdf">codigo_gemini.pdf</a></li>
-<li><a href="gerar_codigos_v2%20(1).pdf">gerar_codigos_v2 (1).pdf</a></li>
-<li><a href="gerar_codigos_v2.pdf">gerar_codigos_v2.pdf</a></li>
-<li><a href="prompt_ia.pdf">prompt_ia.pdf</a></li>
-<li><a href="relatorio_modularizacao.md.pdf">relatorio_modularizacao.md.pdf</a></li>
-<li><a href="relatorio_modularizacao_final.pdf">relatorio_modularizacao_final.pdf</a></li>
-<li><a href="testar_codigos.pdf">testar_codigos.pdf</a></li></ul></section>
+
+<section class="task-files" aria-labelledby="arquivos-tarefa"><h2 id="arquivos-tarefa">Documentos da tarefa</h2><ul><li><a href="codigo_chatgpt.pdf">codigo_chatgpt.pdf</a> <small>(PDF · 24 KB)</small></li><li><a href="codigo_gemini.pdf">codigo_gemini.pdf</a> <small>(PDF · 26 KB)</small></li><li><a href="gerar_codigos_v2%20%281%29.pdf">gerar_codigos_v2 (1).pdf</a> <small>(PDF · 26 KB)</small></li><li><a href="gerar_codigos_v2.pdf">gerar_codigos_v2.pdf</a> <small>(PDF · 26 KB)</small></li><li><a href="prompt_ia.pdf">prompt_ia.pdf</a> <small>(PDF · 22 KB)</small></li><li><a href="relatorio_modularizacao.md.pdf">relatorio_modularizacao.md.pdf</a> <small>(PDF · 261 KB)</small></li><li><a href="relatorio_modularizacao_final.pdf">relatorio_modularizacao_final.pdf</a> <small>(PDF · 129 KB)</small></li><li><a href="testar_codigos.pdf">testar_codigos.pdf</a> <small>(PDF · 24 KB)</small></li></ul></section><section class="task-files"><h2>Programa executável</h2><p>Versão complementar revisada, com validação de valores e estatísticas recalculadas.</p><a href="monitoramento.py" download>Baixar monitoramento.py</a></section><nav class="task-nav" aria-label="Navegação da tarefa"><a href="../index.html#tarefas">← Todas as tarefas</a><a href="../tarefa-14/index.html">← Tarefa 14</a><a href="../tarefa-16/index.html">Tarefa 16 →</a></nav>
 </body>
 </html>
